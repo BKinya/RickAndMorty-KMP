@@ -3,7 +3,7 @@ agp = "8.2.2"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
-androidx-activityCompose = "1.9.1"
+androidx-activityCompose = "1.9.2"
 androidx-appcompat = "1.7.0"
 androidx-constraintlayout = "2.1.4"
 androidx-core-ktx = "1.13.1"
@@ -14,8 +14,12 @@ androidx-test-junit = "1.2.1"
 compose-plugin = "1.6.11"
 junit = "4.13.2"
 kotlin = "2.0.20"
+kotlinxSerializationJson = "1.7.2"
 ktor = "2.3.12"
 coroutines = "1.9.0-RC.2"
+logBack = "1.5.8"
+koin = "4.0.0-RC2"
+
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -30,11 +34,24 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+ktor-client-resources = { module = "io.ktor:ktor-client-resources", version.ref = "ktor" }
+ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = {module  = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-logging-artifact = {module = "ch.qos.logback:logback-classic", version.ref = "logBack"}
+koin-core = {module = "io.insert-koin:koin-core", version.ref = "koin"}
+koin-test = {module = "io.insert-koin:koin-test", version.ref = "koin"}
+koin-android = {module = "io.insert-koin:koin-android", version.ref = "koin"}
+koin-compose-viewmodel = {module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin"}
+koin-compose = {module = "io.insert-koin:koin-compose", version.ref = "koin"}
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin"}
+
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

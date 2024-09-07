@@ -1,4 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -7,6 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 kotlin {
@@ -35,6 +35,10 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
+
+            // Koin
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -45,8 +49,25 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+
+            // Ktor
             implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.resources)
+            implementation(libs.ktor.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+
+            // Kotlinx.serialization
+            implementation(libs.kotlinx.serialization.json)
+
+            // Coroutines
             implementation(libs.kotlinx.coroutines.core)
+
+            // Koin
+            implementation(libs.koin.core)
+            implementation(libs.koin.test)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koin.compose)
+
         }
 
         iosMain.dependencies {

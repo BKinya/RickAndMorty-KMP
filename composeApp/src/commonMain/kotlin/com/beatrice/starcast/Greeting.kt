@@ -1,9 +1,18 @@
 package com.beatrice.starcast
 
-class Greeting {
-    private val platform = getPlatform()
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.request.get
+import io.ktor.client.statement.bodyAsText
 
-    fun greet(): String {
-        return "Hello, ${platform.name}!"
+class Greeting {
+    private val client = HttpClient()
+
+
+    suspend fun greeting(): String{
+        val response = client.get("https://ktor.io/docs/")
+        return response.bodyAsText()
     }
+
+
 }

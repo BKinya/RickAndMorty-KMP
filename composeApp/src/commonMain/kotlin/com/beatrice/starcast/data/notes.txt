@@ -5,3 +5,6 @@ Data source classes + the repository
 
 
 Something else to worry about, dependency injection
+
+logging of responses from the server
+This: implementation("ch.qos.logback:logback-classic:$logback_version")
