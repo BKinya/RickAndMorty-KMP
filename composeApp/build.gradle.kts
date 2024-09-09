@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "2.0.20"
+    id("io.gitlab.arturbosch.detekt") version "1.23.7"
+
 }
 
 kotlin {
@@ -15,8 +17,9 @@ kotlin {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
+
+
     }
-    
     listOf(
         iosX64(),
         iosArm64(),
@@ -27,9 +30,8 @@ kotlin {
             isStatic = true
         }
     }
-    
     sourceSets {
-        
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -43,7 +45,6 @@ kotlin {
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
-//            implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
@@ -70,7 +71,6 @@ kotlin {
             implementation(libs.koin.test)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.koin.compose)
-
         }
 
         iosMain.dependencies {
@@ -104,6 +104,7 @@ android {
             isMinifyEnabled = false
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -115,4 +116,3 @@ android {
         debugImplementation(compose.uiTooling)
     }
 }
-
