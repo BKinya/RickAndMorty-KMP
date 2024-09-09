@@ -6,9 +6,9 @@ val swColorScheme =
     lightColorScheme(
         primary = gold,
         surface = black,
-        onSurface = gold,
+        onSurface = lightYellow,
         background = black,
-        onBackground = gold,
+        onBackground = lightYellow,
         error = red,
         onError = white
     )
