@@ -1,4 +1,4 @@
-package com.beatrice.starcast
+package com.beatrice.swcast
 
 import android.os.Build
 

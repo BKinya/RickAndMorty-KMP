@@ -1,7 +1,7 @@
-package com.beatrice.starcast.data.repository
+package com.beatrice.swcast.data.repository
 
-import com.beatrice.starcast.data.remote.client.ApiClient
-import com.beatrice.starcast.domain.CharacterRepository
+import com.beatrice.swcast.data.remote.client.ApiClient
+import com.beatrice.swcast.domain.CharacterRepository
 
 class CharacterRepositoryImpl(
     private val apiClient: ApiClient

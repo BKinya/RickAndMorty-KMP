@@ -1,4 +1,4 @@
-package com.beatrice.starcast.data.remote.client
+package com.beatrice.swcast.data.remote.client
 
 interface ApiClient {
     /**

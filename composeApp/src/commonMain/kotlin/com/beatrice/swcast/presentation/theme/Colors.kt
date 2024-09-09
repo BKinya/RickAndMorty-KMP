@@ -1,4 +1,4 @@
-package com.beatrice.starcast.presentation.theme
+package com.beatrice.swcast.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

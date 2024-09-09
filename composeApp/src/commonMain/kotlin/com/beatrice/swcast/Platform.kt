@@ -1,4 +1,4 @@
-package com.beatrice.starcast
+package com.beatrice.swcast
 
 interface Platform {
     val name: String

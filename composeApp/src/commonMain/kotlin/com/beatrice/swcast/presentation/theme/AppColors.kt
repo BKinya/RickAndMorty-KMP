@@ -1,8 +1,8 @@
-package com.beatrice.starcast.presentation.theme
+package com.beatrice.swcast.presentation.theme
 
 import androidx.compose.material3.lightColorScheme
 
-val starCastColorScheme =
+val swColorScheme =
     lightColorScheme(
         primary = gold,
         surface = black,

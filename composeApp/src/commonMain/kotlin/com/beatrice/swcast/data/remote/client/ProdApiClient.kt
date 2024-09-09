@@ -1,7 +1,6 @@
-package com.beatrice.starcast.data.remote.client
+package com.beatrice.swcast.data.remote.client
 
 import io.ktor.client.HttpClient
-import io.ktor.client.request.get
 
 class ProdApiClient(
     private val httpClient: HttpClient

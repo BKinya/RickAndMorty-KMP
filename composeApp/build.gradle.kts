@@ -80,7 +80,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.beatrice.starcast"
+    namespace = "com.beatrice.swcast"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -88,7 +88,7 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        applicationId = "com.beatrice.starcast"
+        applicationId = "com.beatrice.swcast"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1

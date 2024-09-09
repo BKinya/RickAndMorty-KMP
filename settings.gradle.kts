@@ -1,4 +1,4 @@
-rootProject.name = "StarCast"
+rootProject.name = "SwCast"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

@@ -1,16 +1,16 @@
-package com.beatrice.starcast.presentation
+package com.beatrice.swcast.presentation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.beatrice.starcast.presentation.theme.StarCastTheme
+import com.beatrice.swcast.presentation.theme.SwTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
 fun App() {
-    StarCastTheme {
+    SwTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
         }
     }
