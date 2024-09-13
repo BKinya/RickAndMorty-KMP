@@ -11,10 +11,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.beatrice.swcast.presentation.theme.black
 import com.beatrice.swcast.presentation.theme.gold
-import com.beatrice.swcast.presentation.theme.gold0
 import com.beatrice.swcast.presentation.theme.gold2
 import com.beatrice.swcast.presentation.theme.gold3
-import com.beatrice.swcast.presentation.theme.gold1
 
 
 @Composable
