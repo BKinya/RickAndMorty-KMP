@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
 import com.beatrice.swcast.presentation.theme.black
 import com.beatrice.swcast.presentation.theme.gold
@@ -71,5 +72,19 @@ fun BoldText(modifier: Modifier = Modifier,
             fontWeight = FontWeight.Normal
         )
     )
+}
+
+@Composable
+fun UnderLinedText(modifier: Modifier = Modifier,
+                   text: String) {
+    Text(text,
+        modifier = modifier,
+        style = TextStyle(
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            textDecoration = TextDecoration.Underline
+        )
+    )
+
 }
 

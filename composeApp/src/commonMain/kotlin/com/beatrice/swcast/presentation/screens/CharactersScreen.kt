@@ -13,8 +13,12 @@ import com.beatrice.swcast.presentation.state.CharacterUIState
 fun CharactersScreen(modifier: Modifier = Modifier,
                      characterUIState: CharacterUIState) {
 
-    Scaffold(modifier = modifier) {
-        contentPadding ->
+    Scaffold(modifier = modifier,
+        topBar = {
+            /**
+             * Could this resize as the user scrolls up... no no use
+             */
+        }) { _ ->
 
         when(characterUIState){
             is CharacterUIState.Content -> CharactersListComponent(
