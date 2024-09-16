@@ -123,3 +123,9 @@ android {
         debugImplementation(compose.uiTooling)
     }
 }
+
+compose.resources{
+    publicResClass = true
+    packageOfResClass = "com.beatrice.swcast.resources"
+    generateResClass = auto
+}

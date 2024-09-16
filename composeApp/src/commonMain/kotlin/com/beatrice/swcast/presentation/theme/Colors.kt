@@ -3,6 +3,7 @@ package com.beatrice.swcast.presentation.theme
 import androidx.compose.ui.graphics.Color
 
 val black = Color(0xFF000000)
+val black30 = Color(0x66000000)
 val white = Color(0xFFFFFFFF)
 val gold0 = Color(0xFFa67c00)
 val gold1 = Color(0xFFbf9b30)
