@@ -14,7 +14,6 @@ import com.beatrice.swcast.presentation.theme.gold3
 import com.beatrice.swcast.presentation.theme.smokeWhite
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
-import org.jetbrains.compose.resources.Resource
 import org.jetbrains.compose.resources.painterResource
 import swcast.composeapp.generated.resources.Res
 import swcast.composeapp.generated.resources.ic_person

@@ -1,4 +1,4 @@
-package com.beatrice.swcast.domain
+package com.beatrice.swcast.domain.repository
 
 interface CharacterRepository {
     /**
