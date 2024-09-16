@@ -35,7 +35,11 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            // Ktor
             implementation(libs.ktor.client.okhttp)
+
+            // Coroutines
             implementation(libs.kotlinx.coroutines.android)
 
             // Koin
@@ -71,6 +75,9 @@ kotlin {
             implementation(libs.koin.test)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.koin.compose)
+
+            // Kamel
+            implementation(libs.kamel.image)
         }
 
         iosMain.dependencies {

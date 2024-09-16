@@ -30,7 +30,7 @@ fun StartScreen(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BigTitle(
-            title = "Star Wars Cast",
+            title = "Ricky and Morty Cast",
             modifier = Modifier.padding(32.dp)
         )
         Spacer(Modifier.height(64.dp))

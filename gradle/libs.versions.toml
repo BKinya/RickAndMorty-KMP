@@ -13,6 +13,7 @@ androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 compose-plugin = "1.6.11"
 junit = "4.13.2"
+kamelImage = "0.9.5"
 kotlin = "2.0.20"
 kotlinxSerializationJson = "1.7.2"
 ktor = "2.3.12"
@@ -24,6 +25,7 @@ koin = "4.0.0-RC2"
 
 
 [libraries]
+kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamelImage" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -52,6 +54,7 @@ koin-android = {module = "io.insert-koin:koin-android", version.ref = "koin"}
 koin-compose-viewmodel = {module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin"}
 koin-compose = {module = "io.insert-koin:koin-compose", version.ref = "koin"}
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin"}
+
 
 
 
