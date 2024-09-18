@@ -79,8 +79,8 @@ fun RegularText(
             fontSize = 24.sp,
             fontWeight = FontWeight.Normal,
             brush = brush
-
-        )
+        ),
+        textAlign = TextAlign.Center
     )
 }
 

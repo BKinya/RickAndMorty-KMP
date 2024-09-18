@@ -78,6 +78,9 @@ kotlin {
 
             // Kamel
             implementation(libs.kamel.image)
+
+            // Napier
+            implementation(libs.napier)
         }
 
         iosMain.dependencies {

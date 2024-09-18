@@ -8,6 +8,7 @@ import com.beatrice.swcast.presentation.components.CharactersListComponent
 import com.beatrice.swcast.presentation.components.ErrorComponent
 import com.beatrice.swcast.presentation.components.LoadingIndicator
 import com.beatrice.swcast.presentation.state.CharacterUIState
+import io.github.aakira.napier.Napier
 
 @Composable
 fun CharactersScreen(modifier: Modifier = Modifier,
@@ -30,7 +31,9 @@ fun CharactersScreen(modifier: Modifier = Modifier,
             )
             is CharacterUIState.Error -> ErrorComponent(
                 message = characterUIState.message,
-                onRetry = {})
+                onRetry = {
+                    Napier.d { "Retry Clicked" }
+                })
             CharacterUIState.Loading -> LoadingIndicator()
         }
     }

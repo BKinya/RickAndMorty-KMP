@@ -5,8 +5,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.beatrice.swcast.domain.models.Character
+import com.beatrice.swcast.presentation.components.CharactersListComponent
 import com.beatrice.swcast.presentation.screens.CharacterDetailScreen
+import com.beatrice.swcast.presentation.screens.CharactersScreen
 import com.beatrice.swcast.presentation.screens.StartScreen
+import com.beatrice.swcast.presentation.state.CharacterUIState
 import com.beatrice.swcast.presentation.theme.SwTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -25,9 +28,9 @@ val testCharacter = Character(
 fun App() {
     SwTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            CharacterDetailScreen(character = testCharacter,
-                onNavigateBack = {
-                })
+            CharactersScreen(
+                characterUIState = CharacterUIState.Error(message = "No Internet connection No Internet connection No Internet")
+            )
         }
     }
 }
