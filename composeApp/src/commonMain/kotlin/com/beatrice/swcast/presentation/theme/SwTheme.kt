@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun SwTheme(content: @Composable () -> Unit) {
-    val colorScheme = swColorScheme
+    val colorScheme = rNmColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,

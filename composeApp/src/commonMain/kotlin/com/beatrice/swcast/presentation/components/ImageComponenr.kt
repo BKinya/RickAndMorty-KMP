@@ -31,7 +31,7 @@ fun ImageComponent(
         modifier = modifier,
         contentDescription = "Character's image",
         contentScale = ContentScale.FillBounds,
-        onLoading = { progress ->
+        onLoading = { _ ->
             Box(modifier = Modifier.fillMaxWidth()) {
                 LoadingIndicator(
                     modifier = Modifier.align(Alignment.Center)

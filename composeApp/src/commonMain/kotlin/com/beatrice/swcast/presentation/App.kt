@@ -1,6 +1,7 @@
 package com.beatrice.swcast.presentation
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,12 +30,23 @@ fun App() {
     SwTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             CharactersScreen(
-                characterUIState = CharacterUIState.Loading
+                characterUIState =
+                CharacterUIState.Content(
+                    characters = listOf(
+                        testCharacter,
+                        testCharacter.copy(name = "Morty Smith"),
+                        testCharacter.copy(name = "Summer Smith"),
+                        testCharacter.copy(name = "Beth Smith"),
+                        testCharacter.copy(name = "Jerry Smith"),
+                        testCharacter.copy(name = "Abadango Cluster Princess"),
+                        testCharacter.copy(name = "Abradolf Lincler")
+                    )
+                )
             )
         }
     }
 }
 
 /**
- * Rename the project to RnM or sth closer
+ * todo: Rename the project to RnM or sth closer
  */

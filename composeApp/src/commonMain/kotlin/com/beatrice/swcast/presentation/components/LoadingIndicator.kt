@@ -15,6 +15,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
+fun DoubleLoadingIndicator(modifier: Modifier = Modifier) {
+
+    Box(modifier = modifier.size(100.dp)) {
+        CircularProgressIndicator(
+            modifier = Modifier.matchParentSize()
+        )
+        LoadingIndicator(modifier = Modifier.align(alignment = Alignment.Center))
+    }
+}
+
+@Composable
 fun LoadingIndicator(modifier: Modifier = Modifier) {
     val progressValue = 0.85f
     val infiniteTransition = rememberInfiniteTransition()
@@ -27,14 +38,9 @@ fun LoadingIndicator(modifier: Modifier = Modifier) {
             repeatMode = RepeatMode.Reverse
         )
     )
-    Box(modifier = modifier.size(100.dp)) {
-        CircularProgressIndicator(
-            modifier = Modifier.matchParentSize()
-        )
-        CircularProgressIndicator(
-            modifier = Modifier.size(70.dp).align(alignment = Alignment.Center),
-            progress = {progressAnimationValue}
-        )
-    }
+    CircularProgressIndicator(
+        modifier = modifier.size(70.dp),
+        progress = {progressAnimationValue}
+    )
 
 }
