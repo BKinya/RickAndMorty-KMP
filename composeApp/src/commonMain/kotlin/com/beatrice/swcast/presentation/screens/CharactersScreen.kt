@@ -1,8 +1,11 @@
 package com.beatrice.swcast.presentation.screens
 
-import EmptyComponent
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.beatrice.swcast.presentation.components.CharactersListComponent
 import com.beatrice.swcast.presentation.components.ErrorComponent
@@ -36,7 +39,13 @@ fun CharactersScreen(modifier: Modifier = Modifier,
                 onRetry = {
                     Napier.d { "Retry Clicked" }
                 })
-            CharacterUIState.Loading -> LoadingIndicator()
+            CharacterUIState.Loading -> {
+                Box(modifier = Modifier.fillMaxSize()){
+                    LoadingIndicator(
+                        modifier = Modifier.align(alignment = Alignment.Center)
+                    )
+                }
+            }
         }
     }
 

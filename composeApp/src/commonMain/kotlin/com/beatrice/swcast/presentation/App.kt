@@ -29,7 +29,7 @@ fun App() {
     SwTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             CharactersScreen(
-                characterUIState = CharacterUIState.Error(message = "No Internet connection No Internet connection No Internet")
+                characterUIState = CharacterUIState.Loading
             )
         }
     }
