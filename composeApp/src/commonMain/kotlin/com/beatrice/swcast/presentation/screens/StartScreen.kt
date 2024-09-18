@@ -18,29 +18,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.beatrice.swcast.presentation.components.BigTitle
 import com.beatrice.swcast.presentation.components.SearchComponent
+import com.beatrice.swcast.presentation.components.TypeWriterText
 
 @Composable
 fun StartScreen(modifier: Modifier = Modifier) {
-    var query by remember {
-        mutableStateOf("")
-    }
+
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        BigTitle(
-            title = "Ricky and Morty Cast",
-            modifier = Modifier.padding(32.dp)
-        )
+        TypeWriterText(
+            text = "Ricky and Morty Cast",
+        ){  text ->
+            BigTitle(
+                title = text,
+                modifier = Modifier.padding(32.dp)
+            )
 
-        SearchComponent(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
-            query = query,
-            onQueryChanged = {
-                println("Text is $it")
-                query = it
-            }
-        )
+        }
+
+
     }
 }
