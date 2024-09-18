@@ -41,7 +41,7 @@ import com.beatrice.swcast.resources.ic_forward
 import org.jetbrains.compose.resources.painterResource
 
 
-@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CharacterDetailScreen(
     modifier: Modifier = Modifier,
@@ -54,9 +54,9 @@ fun CharacterDetailScreen(
                 modifier = Modifier.fillMaxWidth()
                     .background(
                         color = black30
-                    ).padding(horizontal = 8.dp, vertical = 12.dp),
+                    ).padding(horizontal = 12.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
 
                 Icon(
@@ -64,7 +64,6 @@ fun CharacterDetailScreen(
                     painter = painterResource(Res.drawable.ic_back),
                     tint = gold,
                     modifier = Modifier
-                        .size(40.dp)
                         .clickable(onClick = onNavigateBack)
                 )
                 SmallTitle(title = character.name)
@@ -87,7 +86,7 @@ fun CharacterDetailScreen(
             Spacer(Modifier.height(8.dp))
 
             Column(
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(12.dp)
             ) {
                 FlowRow(
                     modifier = Modifier
