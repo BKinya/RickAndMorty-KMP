@@ -35,7 +35,7 @@ fun BigTitle(
         title,
         modifier = modifier,
         style = TextStyle(
-            fontSize = 48.sp,
+            fontSize = 40.sp,
             fontWeight = FontWeight.Thin,
             textAlign = TextAlign.Center,
             brush = brush

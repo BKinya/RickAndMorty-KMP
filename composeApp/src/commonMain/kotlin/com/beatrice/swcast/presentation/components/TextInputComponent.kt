@@ -25,6 +25,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.beatrice.swcast.presentation.theme.gold
+import com.beatrice.swcast.presentation.theme.gold0
 import com.beatrice.swcast.presentation.theme.lightYellow
 import com.beatrice.swcast.presentation.theme.smokeWhite
 
@@ -41,7 +42,7 @@ fun SearchComponent(
         mutableStateOf(false)
     }
     BasicTextField(
-        modifier = modifier.height(90.dp)
+        modifier = modifier.height(75.dp)
             .focusRequester(focusRequester)
             .onFocusChanged { focusState ->
                 isFocused = focusState.isFocused
@@ -49,7 +50,7 @@ fun SearchComponent(
             }.border(
                 width = 2.dp,
                 shape = RoundedCornerShape(40.dp),
-                color = if (isFocused) gold else lightYellow
+                color = if (isFocused) gold else gold0
             ),
         value = query,
         onValueChange = onQueryChanged,

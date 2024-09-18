@@ -29,20 +29,21 @@ val testCharacter = Character(
 fun App() {
     SwTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            CharactersScreen(
-                characterUIState =
-                CharacterUIState.Content(
-                    characters = listOf(
-                        testCharacter,
-                        testCharacter.copy(name = "Morty Smith"),
-                        testCharacter.copy(name = "Summer Smith"),
-                        testCharacter.copy(name = "Beth Smith"),
-                        testCharacter.copy(name = "Jerry Smith"),
-                        testCharacter.copy(name = "Abadango Cluster Princess"),
-                        testCharacter.copy(name = "Abradolf Lincler")
-                    )
-                )
-            )
+            StartScreen()
+//            CharactersScreen(
+//                characterUIState =
+//                CharacterUIState.Content(
+//                    characters = listOf(
+//                        testCharacter,
+//                        testCharacter.copy(name = "Morty Smith"),
+//                        testCharacter.copy(name = "Summer Smith"),
+//                        testCharacter.copy(name = "Beth Smith"),
+//                        testCharacter.copy(name = "Jerry Smith"),
+//                        testCharacter.copy(name = "Abadango Cluster Princess"),
+//                        testCharacter.copy(name = "Abradolf Lincler")
+//                    )
+//                )
+//            )
         }
     }
 }

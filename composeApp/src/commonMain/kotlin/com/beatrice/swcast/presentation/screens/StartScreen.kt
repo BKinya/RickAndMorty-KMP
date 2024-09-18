@@ -33,10 +33,9 @@ fun StartScreen(modifier: Modifier = Modifier) {
             title = "Ricky and Morty Cast",
             modifier = Modifier.padding(32.dp)
         )
-        Spacer(Modifier.height(64.dp))
 
         SearchComponent(
-            modifier = Modifier.fillMaxWidth().padding(20.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
             query = query,
             onQueryChanged = {
                 println("Text is $it")
