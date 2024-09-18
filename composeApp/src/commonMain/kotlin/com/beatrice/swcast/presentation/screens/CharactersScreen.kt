@@ -25,9 +25,11 @@ fun CharactersScreen(modifier: Modifier = Modifier,
             is CharacterUIState.Content -> CharactersListComponent(
                 characters = characterUIState.characters
             )
-            is CharacterUIState.Empty -> EmptyComponent(
+            is CharacterUIState.Empty -> ErrorComponent(
                 message = characterUIState.message,
-                onRetry = {}
+                onRetry = {
+
+                }
             )
             is CharacterUIState.Error -> ErrorComponent(
                 message = characterUIState.message,
