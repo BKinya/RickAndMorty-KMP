@@ -35,11 +35,7 @@ fun CharactersScreen(modifier: Modifier = Modifier,
                     Napier.d { "Retry Clicked" }
                 })
             CharacterUIState.Loading -> {
-                Box(modifier = modifier.fillMaxSize()){
-                    DoubleLoadingIndicator(
-                        modifier = Modifier.align(alignment = Alignment.Center)
-                    )
-                }
+               LoadingScreen(modifier = modifier)
             }
         }
 

@@ -1,18 +1,14 @@
 package com.beatrice.swcast.presentation
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.beatrice.swcast.domain.models.Character
-import com.beatrice.swcast.presentation.components.CharactersListComponent
-import com.beatrice.swcast.presentation.screens.CharacterDetailScreen
 import com.beatrice.swcast.presentation.screens.CharactersScreen
-import com.beatrice.swcast.presentation.screens.StartScreen
+import com.beatrice.swcast.presentation.screens.LoadingScreen
 import com.beatrice.swcast.presentation.state.CharacterUIState
 import com.beatrice.swcast.presentation.theme.SwTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 val testCharacter = Character(
     name = "Rick Sanchez",
@@ -29,21 +25,20 @@ val testCharacter = Character(
 fun App() {
     SwTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            StartScreen()
-//            CharactersScreen(
-//                characterUIState =
-//                CharacterUIState.Content(
-//                    characters = listOf(
-//                        testCharacter,
-//                        testCharacter.copy(name = "Morty Smith"),
-//                        testCharacter.copy(name = "Summer Smith"),
-//                        testCharacter.copy(name = "Beth Smith"),
-//                        testCharacter.copy(name = "Jerry Smith"),
-//                        testCharacter.copy(name = "Abadango Cluster Princess"),
-//                        testCharacter.copy(name = "Abradolf Lincler")
-//                    )
-//                )
-//            )
+            CharactersScreen(
+                characterUIState =
+                CharacterUIState.Content(
+                    characters = listOf(
+                        testCharacter,
+                        testCharacter.copy(name = "Morty Smith"),
+                        testCharacter.copy(name = "Summer Smith"),
+                        testCharacter.copy(name = "Beth Smith"),
+                        testCharacter.copy(name = "Jerry Smith"),
+                        testCharacter.copy(name = "Abadango Cluster Princess"),
+                        testCharacter.copy(name = "Abradolf Lincler")
+                    )
+                )
+            )
         }
     }
 }
