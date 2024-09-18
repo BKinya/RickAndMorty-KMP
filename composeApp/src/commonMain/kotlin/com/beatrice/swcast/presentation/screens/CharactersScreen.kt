@@ -20,7 +20,11 @@ fun CharactersScreen(modifier: Modifier = Modifier,
         when(characterUIState){
             is CharacterUIState.Content -> CharactersListComponent(
                 modifier = modifier,
-                characters = characterUIState.characters
+                characters = characterUIState.characters,
+                searchQuery = "",
+                onQueryChanged = {
+                    Napier.d { "Query is $it" }
+                }
             )
             is CharacterUIState.Empty -> ErrorComponent(
                 message = characterUIState.message,

@@ -31,7 +31,7 @@ import com.beatrice.swcast.presentation.theme.smokeWhite
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchComponent(
+fun TextInputComponent(
     modifier: Modifier = Modifier,
     query: String,
     onQueryChanged: (String) -> Unit,
@@ -42,7 +42,7 @@ fun SearchComponent(
         mutableStateOf(false)
     }
     BasicTextField(
-        modifier = modifier.height(75.dp)
+        modifier = modifier.height(64.dp)
             .focusRequester(focusRequester)
             .onFocusChanged { focusState ->
                 isFocused = focusState.isFocused
