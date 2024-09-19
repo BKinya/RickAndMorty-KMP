@@ -1,4 +1,4 @@
-package com.beatrice.swcast.presentation.screens
+package com.beatrice.swcast.presentation.navigation.destinations
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

@@ -22,6 +22,7 @@ coroutines = "1.9.0-RC.2"
 logBack = "1.5.8"
 koin = "4.0.0-RC2"
 napier = "2.7.1"
+navigationCompose = "2.7.0-alpha07"
 
 
 
@@ -58,6 +59,7 @@ koin-compose-viewmodel = {module = "io.insert-koin:koin-compose-viewmodel", vers
 koin-compose = {module = "io.insert-koin:koin-compose", version.ref = "koin"}
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin"}
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 
 
 

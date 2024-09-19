@@ -2,6 +2,7 @@ package com.beatrice.swcast.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,12 +22,14 @@ import com.beatrice.swcast.presentation.theme.lightYellow
 @Composable
 fun CharacterComponent(
     modifier: Modifier = Modifier,
-    character: Character
+    character: Character,
+    onItemClicked: (Character) -> Unit
 ) {
     Box(
         modifier = modifier
             .width(200.dp)
             .height(247.dp)
+            .clickable(onClick = {onItemClicked(character)})
             .border(
                 shape = RoundedCornerShape(20.dp),
                 color = lightYellow,

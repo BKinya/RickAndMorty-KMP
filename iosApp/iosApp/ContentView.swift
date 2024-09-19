@@ -16,7 +16,7 @@ struct ContentView: View {
             // background
             Color(red: 34/255, green: 34/255, blue: 34/255, opacity: 1)
                 .ignoresSafeArea(.all)
-               
+
 
             // foreground
             ComposeView()

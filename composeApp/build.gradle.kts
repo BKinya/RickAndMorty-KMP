@@ -84,6 +84,10 @@ kotlin {
 
             // Napier
             implementation(libs.napier)
+
+            // Navigation
+            implementation(libs.navigation.compose)
+
         }
 
         iosMain.dependencies {

@@ -5,10 +5,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.beatrice.swcast.domain.models.Character
-import com.beatrice.swcast.presentation.screens.CharactersScreen
-import com.beatrice.swcast.presentation.screens.LoadingScreen
+import com.beatrice.swcast.presentation.navigation.RickyMortyApp
+import com.beatrice.swcast.presentation.navigation.destinations.CharactersScreen
 import com.beatrice.swcast.presentation.state.CharacterUIState
-import com.beatrice.swcast.presentation.theme.SwTheme
+import com.beatrice.swcast.presentation.theme.RickyMortyTheme
 
 val testCharacter = Character(
     name = "Rick Sanchez",
@@ -22,12 +22,11 @@ val testCharacter = Character(
 )
 
 @Composable
-fun App() {
-    SwTheme {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            CharactersScreen(
-                characterUIState =
-                CharacterUIState.Content(
+fun App(modifier : Modifier = Modifier) {
+    RickyMortyTheme {
+        Surface(modifier = modifier.fillMaxSize()) {
+            RickyMortyApp(
+                characterUIState = CharacterUIState.Content(
                     characters = listOf(
                         testCharacter,
                         testCharacter.copy(name = "Morty Smith"),
@@ -39,6 +38,7 @@ fun App() {
                     )
                 )
             )
+
         }
     }
 }

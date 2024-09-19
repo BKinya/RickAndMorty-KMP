@@ -1,5 +1,8 @@
 package com.beatrice.swcast.domain.models
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Character(
     val imageUrl: String,
     val name: String,

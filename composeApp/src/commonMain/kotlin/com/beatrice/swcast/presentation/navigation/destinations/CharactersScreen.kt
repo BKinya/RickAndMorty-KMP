@@ -1,21 +1,18 @@
-package com.beatrice.swcast.presentation.screens
+package com.beatrice.swcast.presentation.navigation.destinations
 
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.beatrice.swcast.domain.models.Character
 import com.beatrice.swcast.presentation.components.CharactersListComponent
 import com.beatrice.swcast.presentation.components.ErrorComponent
-import com.beatrice.swcast.presentation.components.DoubleLoadingIndicator
 import com.beatrice.swcast.presentation.state.CharacterUIState
 import io.github.aakira.napier.Napier
 
 @Composable
 fun CharactersScreen(modifier: Modifier = Modifier,
-                     characterUIState: CharacterUIState) {
+                     characterUIState: CharacterUIState,
+                     navigateToDetailScreen: (Character) -> Unit) {
 
         when(characterUIState){
             is CharacterUIState.Content -> CharactersListComponent(
@@ -24,7 +21,8 @@ fun CharactersScreen(modifier: Modifier = Modifier,
                 searchQuery = "",
                 onQueryChanged = {
                     Napier.d { "Query is $it" }
-                }
+                },
+                navigateToDetailScreen = navigateToDetailScreen
             )
             is CharacterUIState.Empty -> ErrorComponent(
                 message = characterUIState.message,

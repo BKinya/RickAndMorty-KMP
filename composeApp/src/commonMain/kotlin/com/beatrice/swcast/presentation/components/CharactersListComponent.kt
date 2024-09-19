@@ -29,7 +29,6 @@ import com.beatrice.swcast.presentation.theme.darkGrey30
 import com.beatrice.swcast.presentation.theme.gold
 import com.beatrice.swcast.resources.Res
 import com.beatrice.swcast.resources.ic_back
-import io.github.aakira.napier.Napier
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -37,7 +36,8 @@ fun CharactersListComponent(
     modifier: Modifier = Modifier,
     characters: List<Character>,
     searchQuery: String,
-    onQueryChanged: (String) -> Unit
+    onQueryChanged: (String) -> Unit,
+    navigateToDetailScreen: (Character) -> Unit
 ) {
 
     Scaffold(
@@ -58,7 +58,8 @@ fun CharactersListComponent(
         ) {
             items(characters,
                 key = { character -> character.name }) { character ->
-                CharacterComponent(character = character)
+                CharacterComponent(character = character,
+                    onItemClicked = navigateToDetailScreen)
             }
 
 
