@@ -40,7 +40,7 @@ fun TypeWriterText(
         var index = 1
         while (index <= text.length){
             displayText = text.substring(0, index)
-            delay(32)
+            delay(27)
             index += 1
             if (index == text.length+1){
                 index = 1
