@@ -1,8 +1,11 @@
 package com.beatrice.rickmortycast.data.remote.client
 
+import com.beatrice.rickmortycast.data.remote.model.CharacterNetworkResult
+import com.beatrice.rickmortycast.data.remote.model.CharactersResult
+
 interface ApiClient {
-    /**
-     * TODO: For now return a list of characters will get back to paging in a few
-     */
+
     fun searchCharacter(query: String): String
+
+   suspend fun getCharacters(): CharacterNetworkResult<CharactersResult>
 }

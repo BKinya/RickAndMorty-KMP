@@ -66,6 +66,7 @@ kotlin {
             implementation(libs.ktor.client.resources)
             implementation(libs.ktor.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.logging)
 
             // Kotlinx.serialization
             implementation(libs.kotlinx.serialization.json)
@@ -82,7 +83,7 @@ kotlin {
             // Kamel
             implementation(libs.kamel.image)
 
-            // Napier
+            // Logger -> Napier
             implementation(libs.napier)
 
             // Navigation
