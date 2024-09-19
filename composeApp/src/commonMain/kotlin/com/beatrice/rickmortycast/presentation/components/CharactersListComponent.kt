@@ -3,6 +3,7 @@ package com.beatrice.rickmortycast.presentation.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +16,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -88,31 +90,38 @@ fun CharacterListTopBar(
         modifier = modifier.fillMaxWidth()
             .background(
                 color = darkGrey30
-            ).padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 12.dp),
+            ).padding(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        if (isSearching) {
-            SearchComponent(
-                onBackIconClicked = {
-                    isSearching = false
-                },
-                query = query,
-                onQueryChanged = onQueryChanged
-            )
-        } else {
-            SmallTitle(title = "Ricky n Morty Cast")
-
-        }
-        Icon(
-            contentDescription = null,
-            imageVector = Icons.Filled.Search,
-            tint = gold,
-            modifier = Modifier.clickable {
-                isSearching = true
-            }
-
-        )
+        SmallTitle(title = "Ricky n Morty Cast",
+            modifier = Modifier.padding(12.dp))
+// TODO: Implement searching later
+//        if (isSearching) {
+//            Box(modifier = Modifier.fillMaxWidth().background(color = MaterialTheme.colorScheme.surface)) {
+//                SearchComponent(
+//                    onBackIconClicked = {
+//                        isSearching = false
+//                    },
+//                    query = query,
+//                    onQueryChanged = onQueryChanged
+//                )
+//            }
+//        } else {
+//            SmallTitle(title = "Ricky n Morty Cast",
+//                modifier = Modifier.padding(12.dp))
+//
+//        }
+//        Icon(
+//            contentDescription = null,
+//            imageVector = Icons.Filled.Search,
+//            tint = gold,
+//            modifier = Modifier
+//                .padding(12.dp).clickable {
+//                isSearching = true
+//            }
+//
+//        )
 
 
     }
@@ -126,13 +135,14 @@ fun SearchComponent(
     onQueryChanged: (String) -> Unit
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier.padding(start = 12.dp, end = 12.dp, bottom = 12.dp )
     ) {
         Icon(
             contentDescription = null,
             painter = painterResource(Res.drawable.ic_back),
             tint = gold,
             modifier = Modifier
+                .padding(top = 16.dp)
                 .clickable(onClick = onBackIconClicked)
         )
         Spacer(Modifier.height(16.dp))

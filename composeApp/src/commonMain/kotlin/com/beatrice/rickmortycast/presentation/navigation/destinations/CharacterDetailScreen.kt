@@ -104,21 +104,24 @@ fun CharacterDetailScreen(
                 Column(
                     verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
-                    character.episodes.forEach { episode ->
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(bottom = 8.dp, start = 12.dp, end = 12.dp)
-                        ) {
-                            Icon(
-                                painter = painterResource(Res.drawable.ic_forward),
-                                contentDescription = null,
-                                modifier = Modifier.size(16.dp),
-                                tint = gold
-                            )
-                            Spacer(modifier.width(8.dp))
-                            RegularText(text = episode)
-                        }
+                    Box(modifier = Modifier.fillMaxWidth()){
+                        RegularText(text = "Coming Soon", modifier = Modifier.align(Alignment.Center))
                     }
+//                    character.episodes.forEach { episode ->
+//                        Row(
+//                            verticalAlignment = Alignment.CenterVertically,
+//                            modifier = Modifier.padding(bottom = 8.dp, start = 12.dp, end = 12.dp)
+//                        ) {
+//                            Icon(
+//                                painter = painterResource(Res.drawable.ic_forward),
+//                                contentDescription = null,
+//                                modifier = Modifier.size(16.dp),
+//                                tint = gold
+//                            )
+//                            Spacer(modifier.width(8.dp))
+//                            RegularText(text = episode)
+//                        }
+//                    }
                 }
 
             }
