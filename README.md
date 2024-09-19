@@ -1,4 +1,4 @@
-# SwCast
+# Rick n Morty Cast
 
 This is a Kotlin Multiplatform project targeting Android, iOS.
 

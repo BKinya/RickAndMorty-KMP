@@ -1,4 +1,4 @@
-rootProject.name = "SwCast"
+rootProject.name = "RickMortyCast"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

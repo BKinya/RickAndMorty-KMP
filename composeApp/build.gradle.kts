@@ -97,7 +97,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.beatrice.swcast"
+    namespace = "com.beatrice.rickmortycast"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -105,7 +105,7 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        applicationId = "com.beatrice.swcast"
+        applicationId = "com.beatrice.rickmortycast"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -136,6 +136,6 @@ android {
 
 compose.resources{
     publicResClass = true
-    packageOfResClass = "com.beatrice.swcast.resources"
+    packageOfResClass = "com.beatrice.rickmortycast.resources"
     generateResClass = auto
 }
