@@ -24,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import app.cash.paging.compose.LazyPagingItems
 import com.beatrice.rickmortycast.domain.models.Character
 import com.beatrice.rickmortycast.presentation.theme.darkGrey30
 import com.beatrice.rickmortycast.presentation.theme.gold
@@ -34,7 +35,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun CharactersListComponent(
     modifier: Modifier = Modifier,
-    characters: List<Character>,
+    characters: LazyPagingItems<Character>,
     searchQuery: String,
     onQueryChanged: (String) -> Unit,
     navigateToDetailScreen: (Character) -> Unit
@@ -43,34 +44,43 @@ fun CharactersListComponent(
     Scaffold(
         modifier = modifier,
         topBar = {
-            CharacterListTopBar(
-                query = searchQuery,
-                onQueryChanged = onQueryChanged
-            )
+            if (characters.itemCount > 0) {
+                CharacterListTopBar(
+                    query = searchQuery,
+                    onQueryChanged = onQueryChanged
+                )
+            }
         }
     ) { contentPadding ->
         LazyVerticalGrid(
             modifier = modifier.padding(8.dp),
             contentPadding = contentPadding,
             columns = GridCells.Adaptive(minSize = 144.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(characters,
-                key = { character -> character.name }) { character ->
-                CharacterComponent(character = character,
-                    onItemClicked = navigateToDetailScreen)
+            items(
+                characters.itemCount,
+            ) { index ->
+                val character = characters[index]
+                character?.let {
+                    CharacterComponent(
+                        character = it,
+                        onItemClicked = navigateToDetailScreen
+                    )
+                }
+
             }
-
-
         }
     }
 }
 
 @Composable
-fun CharacterListTopBar(modifier: Modifier = Modifier,
-                        query: String,
-                        onQueryChanged: (String) -> Unit) {
+fun CharacterListTopBar(
+    modifier: Modifier = Modifier,
+    query: String,
+    onQueryChanged: (String) -> Unit
+) {
     var isSearching by remember {
         mutableStateOf(false)
     }
@@ -90,7 +100,7 @@ fun CharacterListTopBar(modifier: Modifier = Modifier,
                 query = query,
                 onQueryChanged = onQueryChanged
             )
-        }else{
+        } else {
             SmallTitle(title = "Ricky n Morty Cast")
 
         }
@@ -98,7 +108,7 @@ fun CharacterListTopBar(modifier: Modifier = Modifier,
             contentDescription = null,
             imageVector = Icons.Filled.Search,
             tint = gold,
-            modifier = Modifier.clickable{
+            modifier = Modifier.clickable {
                 isSearching = true
             }
 
@@ -109,10 +119,12 @@ fun CharacterListTopBar(modifier: Modifier = Modifier,
 }
 
 @Composable
-fun SearchComponent(modifier: Modifier = Modifier,
-                    onBackIconClicked: () -> Unit,
-                    query: String,
-                    onQueryChanged: (String) -> Unit) {
+fun SearchComponent(
+    modifier: Modifier = Modifier,
+    onBackIconClicked: () -> Unit,
+    query: String,
+    onQueryChanged: (String) -> Unit
+) {
     Column(
         modifier = modifier
     ) {

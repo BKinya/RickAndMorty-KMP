@@ -23,6 +23,7 @@ logBack = "1.5.8"
 koin = "4.0.0"
 napier = "2.7.1"
 navigationCompose = "2.7.0-alpha07"
+pagingComposeCommon = "3.3.0-alpha02-0.5.1"
 
 
 
@@ -61,6 +62,7 @@ koin-compose = {module = "io.insert-koin:koin-compose", version.ref = "koin"}
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin"}
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+paging-compose-common = { module = "app.cash.paging:paging-compose-common", version.ref = "pagingComposeCommon" }
 
 
 

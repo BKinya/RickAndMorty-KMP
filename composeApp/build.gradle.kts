@@ -89,6 +89,9 @@ kotlin {
             // Navigation
             implementation(libs.navigation.compose)
 
+            // Paging
+            implementation(libs.paging.compose.common)
+
         }
 
         iosMain.dependencies {

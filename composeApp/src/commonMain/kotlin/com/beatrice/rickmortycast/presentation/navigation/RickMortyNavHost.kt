@@ -23,7 +23,6 @@ import kotlinx.serialization.json.Json
 fun RickMortyNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    characterUIState: CharacterUIState
 ) {
     NavHost(
         modifier = modifier,
@@ -33,7 +32,7 @@ fun RickMortyNavHost(
         composable(
             RickMortyScreen.CharacterScreen.route,
         ) {
-            CharactersScreen(characterUIState = characterUIState,
+            CharactersScreen(
                 navigateToDetailScreen = { character ->
                     val route = RickMortyScreen.CharacterDetailScreen.createRoute(character)
                     navController.navigate(route) {

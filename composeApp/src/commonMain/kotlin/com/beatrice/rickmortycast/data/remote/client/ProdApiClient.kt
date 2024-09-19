@@ -1,12 +1,12 @@
 package com.beatrice.rickmortycast.data.remote.client
 
-import com.beatrice.rickmortycast.data.remote.model.CharacterNetworkResult
 import com.beatrice.rickmortycast.data.remote.model.CharactersResult
+import com.beatrice.rickmortycast.data.util.toDomain
+import com.beatrice.rickmortycast.domain.models.Character
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
-import io.ktor.client.statement.HttpResponse
 
 class ProdApiClient(
     private val httpClient: HttpClient
@@ -25,19 +25,11 @@ class ProdApiClient(
     /**
      * TODO: Extract base url to an env property
      */
-    override suspend fun getCharacters(): CharacterNetworkResult<CharactersResult> {
-        // TODO: Update this to use paging
-        return try {
-            val result: CharactersResult =
-                httpClient.get(urlString = "https://rickandmortyapi.com/api/character").body()
-            CharacterNetworkResult.Success(result = result)
-        } catch (e: Exception) {
-            Napier.e(e) {
-                "Error fetching characters"
-            }
-            CharacterNetworkResult.Error(
-                message = e.message ?: "Something went wrong while fetching characters"
-            )
-        }
+    override suspend fun getCharacters(page: Int): List<Character> {
+        val result =
+            httpClient.get(urlString = "https://rickandmortyapi.com/api/character?page=$page")
+        val characters = result.body<CharactersResult>().characterDetails.map { it.toDomain() }
+        return characters
+
     }
 }

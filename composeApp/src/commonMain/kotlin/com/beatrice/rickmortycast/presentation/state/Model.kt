@@ -13,6 +13,6 @@ sealed interface CharacterUIState{
 
 
 
-sealed interface CharacterActions{
-
+sealed interface CharacterAction{
+    data object FetchAllCharacters: CharacterAction
 }
