@@ -2,7 +2,7 @@ package com.beatrice.rickmortycast.presentation.theme
 
 import androidx.compose.material3.lightColorScheme
 
-val rNmColorScheme =
+val rickMortyColorScheme =
     lightColorScheme(
         primary = gold,
         surface = darkGrey,

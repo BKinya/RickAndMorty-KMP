@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import com.beatrice.rickmortycast.domain.models.Character
 import com.beatrice.rickmortycast.presentation.navigation.RickMortyNavHost
 import com.beatrice.rickmortycast.presentation.state.CharacterUIState
-import com.beatrice.rickmortycast.presentation.theme.RickyMortyTheme
+import com.beatrice.rickmortycast.presentation.theme.RickMortyTheme
 
 val testCharacter = Character(
     name = "Rick Sanchez",
@@ -22,7 +22,7 @@ val testCharacter = Character(
 
 @Composable
 fun App(modifier : Modifier = Modifier) {
-    RickyMortyTheme {
+    RickMortyTheme {
         Surface(modifier = modifier.fillMaxSize()) {
             RickMortyNavHost(
                 characterUIState = CharacterUIState.Content(
@@ -42,6 +42,4 @@ fun App(modifier : Modifier = Modifier) {
     }
 }
 
-/**
- * todo: Rename the project to RnM or sth closer
- */
+

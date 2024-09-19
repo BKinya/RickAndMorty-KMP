@@ -4,8 +4,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 
 @Composable
-fun RickyMortyTheme(content: @Composable () -> Unit) {
-    val colorScheme = rNmColorScheme
+fun RickMortyTheme(content: @Composable () -> Unit) {
+    val colorScheme = rickMortyColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,
