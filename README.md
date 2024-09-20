@@ -2,15 +2,12 @@
 
 A Kotlin Multiplatform App targeting Android, and iOS. The app displays Rick and Morty show characters
 
+
 ## Android
 <img src="https://github.com/BKinya/RickAndMorty-KMP/blob/add_gifs/media/android.gif" alt="Android" width="327" height="660">
 
 ## iOS
 <img src="https://github.com/BKinya/RickAndMorty-KMP/blob/add_gifs/media/ios.gif" alt="ios" width="327" height="660" >
-
-- [Android Demo](https://www.loom.com/share/68a5c49258384288ad3b48fb2b61daf9?sid=22ab37eb-a836-4db8-bd53-f331f32f1f18)
-- [iOS Demo](https://www.loom.com/share/e4507e3dfc5f49699f5c14f7e06b58d5?sid=ec0d429a-2c67-48dd-a88b-956129ca4d2a)
-
 
 ## Architecture
 - MVI architecture (Model - View - Intent) - For Unidirectional data flow.
