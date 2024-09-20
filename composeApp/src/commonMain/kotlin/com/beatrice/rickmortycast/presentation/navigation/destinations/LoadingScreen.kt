@@ -12,8 +12,8 @@ import com.beatrice.rickmortycast.presentation.components.BigTitle
 import com.beatrice.rickmortycast.presentation.components.TypeWriterText
 
 @Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
-
+fun LoadingScreen(modifier: Modifier = Modifier,
+                  onFinishTyping: () -> Unit) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -21,14 +21,12 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
     ) {
         TypeWriterText(
             text = "Ricky and Morty Cast",
+            onFinishTyping = onFinishTyping
         ){  text ->
             BigTitle(
                 title = text,
                 modifier = Modifier.padding(32.dp)
             )
-
         }
-
-
     }
 }

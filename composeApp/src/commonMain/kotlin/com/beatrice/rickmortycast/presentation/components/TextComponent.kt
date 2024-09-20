@@ -26,27 +26,27 @@ import com.beatrice.rickmortycast.presentation.theme.gold0
 import com.beatrice.rickmortycast.presentation.theme.gold1
 import com.beatrice.rickmortycast.presentation.theme.gold2
 import com.beatrice.rickmortycast.presentation.theme.gold3
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.delay
 
 
 @Composable
 fun TypeWriterText(
     text: String,
-    content: @Composable (String) -> Unit
-) {
+    onFinishTyping: () -> Unit = {},
+    content: @Composable (String) -> Unit,
+    ) {
 
     var displayText by remember { mutableStateOf("") }
     LaunchedEffect(true) {
         var index = 1
         while (index <= text.length){
             displayText = text.substring(0, index)
-            delay(27)
             index += 1
-            if (index == text.length+1){
-                index = 1
-            }
-        }
+            delay(100)
 
+        }
+        onFinishTyping()
     }
     content( displayText)
 }
@@ -64,7 +64,7 @@ fun BigTitle(
         modifier = modifier,
         style = TextStyle(
             fontSize = 42.sp,
-            fontWeight = FontWeight.Thin,
+            fontWeight = FontWeight.Normal,
             fontStyle = FontStyle.Italic,
             textAlign = TextAlign.Center,
             brush = brush

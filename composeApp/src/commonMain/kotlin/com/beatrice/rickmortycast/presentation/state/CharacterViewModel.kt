@@ -8,10 +8,12 @@ import com.beatrice.rickmortycast.domain.models.Character
 import com.beatrice.rickmortycast.domain.repository.CharacterRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -26,6 +28,9 @@ class CharacterViewModel(
         SharingStarted.WhileSubscribed(5000L),
         PagingData.empty())
 
+    private val _isTyping: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    val isTyping: StateFlow<Boolean> = _isTyping.asStateFlow()
+
     val eventStream = MutableSharedFlow<CharacterAction>(extraBufferCapacity = 10)
 
     init {
@@ -36,7 +41,8 @@ class CharacterViewModel(
         viewModelScope.launch {
             eventStream.collect{ event ->
                 when(event){
-                    is CharacterAction.FetchAllCharacters -> fetchCharacters()
+                    is CharacterAction.FetchAllCharacters -> onFetchCharacters()
+                    is CharacterAction.FinishTyping -> onFinishTyping()
                 }
 
             }
@@ -45,12 +51,19 @@ class CharacterViewModel(
 
     fun sendEvent(action: CharacterAction){
         viewModelScope.launch {
+            delay(500)
             eventStream.emit(action)
         }
     }
 
+    fun onFinishTyping(){
+        viewModelScope.launch {
+            _isTyping.value = false
+        }
+    }
 
-    private fun fetchCharacters(){
+
+    private fun onFetchCharacters(){
         viewModelScope.launch(Dispatchers.IO) {
             repository.getAllCharacters()
                 .cachedIn(this)

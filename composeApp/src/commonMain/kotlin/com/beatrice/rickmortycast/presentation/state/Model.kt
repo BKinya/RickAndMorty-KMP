@@ -15,4 +15,10 @@ sealed interface CharacterUIState{
 
 sealed interface CharacterAction{
     data object FetchAllCharacters: CharacterAction
+
+    /**
+     * OnFinishTyping action is used to control typing text on
+     * the start screen
+     */
+    data object FinishTyping: CharacterAction
 }

@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import com.beatrice.rickmortycast.domain.models.Character
 import com.beatrice.rickmortycast.presentation.navigation.RickMortyNavHost
+import com.beatrice.rickmortycast.presentation.navigation.destinations.LoadingScreen
 import com.beatrice.rickmortycast.presentation.state.CharacterAction
 import com.beatrice.rickmortycast.presentation.state.CharacterUIState
 import com.beatrice.rickmortycast.presentation.state.CharacterViewModel
@@ -23,7 +24,6 @@ fun App(modifier: Modifier = Modifier) {
         KoinContext {
             Scaffold(modifier = modifier.fillMaxSize()) {
                 RickMortyNavHost()
-
             }
         }
     }
