@@ -1,14 +1,11 @@
 # Rick n Morty Cast
+A Kotlin Multiplatform App targeting Android, and iOS. The app displays Rick and Morty show characters.
 
-A Kotlin Multiplatform App targeting Android, iOS. The app displays Rick and Morty show characters
+## Android
+<img src="https://github.com/BKinya/RickAndMorty-KMP/blob/add_gifs/media/android.gif" alt="Android" width="327" height="660">
 
-## Screenshots
-<img src="https://github.com/BKinya/RickAndMorty-KMP/blob/main/images/android.png" alt="Android" >&emsp;&emsp;&emsp;<img src="https://github.com/BKinya/RickAndMorty-KMP/blob/main/images/ios.png" alt="ios" width="327" height="660" >
-
-### See Full Demo
-- [Android Demo](https://www.loom.com/share/68a5c49258384288ad3b48fb2b61daf9?sid=22ab37eb-a836-4db8-bd53-f331f32f1f18)
-- [iOS Demo](https://www.loom.com/share/e4507e3dfc5f49699f5c14f7e06b58d5?sid=ec0d429a-2c67-48dd-a88b-956129ca4d2a)
-
+## iOS
+<img src="https://github.com/BKinya/RickAndMorty-KMP/blob/add_gifs/media/ios.gif" alt="ios" width="327" height="660" >
 
 ## Architecture
 - MVI architecture (Model - View - Intent) - For Unidirectional data flow.
@@ -34,7 +31,7 @@ in Compose Multiplatform
 
 ## Run Project
 To run the app on Android:
-- Import the project in Android studio 
+- Import the project into Android studio 
 - In the list of configurations, select **composeApp**
 - Choose either an emulator or a device and click run
 
