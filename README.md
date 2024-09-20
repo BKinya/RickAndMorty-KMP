@@ -1,5 +1,4 @@
 # Rick n Morty Cast
-
 A Kotlin Multiplatform App targeting Android, and iOS. The app displays Rick and Morty show characters.
 
 ## Android
