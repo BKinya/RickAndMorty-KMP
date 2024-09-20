@@ -1,12 +1,19 @@
 # Rick n Morty Cast
 
-This is a Kotlin Multiplatform project targeting Android, iOS.
+A Kotlin Multiplatform App targeting Android, iOS. The app displays Rick and Morty show characters
 
-Architecture => MVI
+## Screenshot
+### Android 
+### iOS
+.. demo links
 
-Libraries
-Napier for logging 
-Kamel for image loading
+## Architecture
+- MVI architecture 
+- Repository pattern 
+
+## Built With
+
+## Run Project
 
 ## Resources
 - [SwiftUI in Compose Multiplatform of KMP](https://blog.kinto-technologies.com/posts/2024-03-07-swiftui-in-compose-multiplatform/)
