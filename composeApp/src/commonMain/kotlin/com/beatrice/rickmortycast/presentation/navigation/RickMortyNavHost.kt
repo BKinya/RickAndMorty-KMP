@@ -33,10 +33,6 @@ fun RickMortyNavHost(
         ) {
             CharactersScreen(
                 navigateToDetailScreen = { character ->
-                    /**
-                     * is this a good place to put a blocking call...
-                     * Considering it's sequential will one of them be discarded?
-                     */
                     val route = RickMortyScreen.CharacterDetailScreen.createRoute(character)
                     navController.navigate(route)
 
@@ -75,9 +71,7 @@ fun RickMortyNavHost(
                 onNavigateBack = {
                     navController.popBackStack()
                 },
-                
             )
         }
-
     }
 }
