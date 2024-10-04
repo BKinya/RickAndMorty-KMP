@@ -10,4 +10,9 @@ interface CharacterRepository {
     fun searchCharacter(query: String): String
 
     fun getAllCharacters(): Flow<PagingData<Character>>
+
+    /**
+     * Get all episodes where a character is featured
+     */
+   fun getCharacterEpisodes(episodeUrls: List<String>): Flow<List<String>>
 }

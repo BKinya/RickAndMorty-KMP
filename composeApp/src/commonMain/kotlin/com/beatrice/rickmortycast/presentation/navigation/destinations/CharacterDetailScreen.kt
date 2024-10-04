@@ -1,5 +1,7 @@
 package com.beatrice.rickmortycast.presentation.navigation.destinations
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -20,20 +22,34 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.beatrice.rickmortycast.domain.models.Character
+import com.beatrice.rickmortycast.presentation.components.ErrorTextComponent
 import com.beatrice.rickmortycast.presentation.components.ImageComponent
+import com.beatrice.rickmortycast.presentation.components.LoadingIndicator
 import com.beatrice.rickmortycast.presentation.components.RegularText
 import com.beatrice.rickmortycast.presentation.components.SmallTitle
 import com.beatrice.rickmortycast.presentation.components.UnderLinedText
+import com.beatrice.rickmortycast.presentation.state.CharacterAction
+import com.beatrice.rickmortycast.presentation.state.CharacterViewModel
+import com.beatrice.rickmortycast.presentation.state.UiState
 import com.beatrice.rickmortycast.presentation.theme.darkGrey30
 import com.beatrice.rickmortycast.presentation.theme.gold
 import com.beatrice.rickmortycast.resources.Res
 import com.beatrice.rickmortycast.resources.ic_back
 import com.beatrice.rickmortycast.resources.ic_forward
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
 
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -41,8 +57,14 @@ import org.jetbrains.compose.resources.painterResource
 fun CharacterDetailScreen(
     modifier: Modifier = Modifier,
     character: Character,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    characterViewModel: CharacterViewModel = koinViewModel()
 ) {
+
+    LaunchedEffect(true) {
+        characterViewModel.sendEvent(CharacterAction.FetchCharacterEpisodes(character.episodes))
+    }
+    val episodesState = characterViewModel.episodesUiState.collectAsStateWithLifecycle().value
     Scaffold(modifier = modifier,
         topBar = {
             Row(
@@ -104,29 +126,97 @@ fun CharacterDetailScreen(
                 Column(
                     verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
-                    Box(modifier = Modifier.fillMaxWidth()){
-                        RegularText(text = "Coming Soon", modifier = Modifier.align(Alignment.Center))
-                    }
-//                    character.episodes.forEach { episode ->
-//                        Row(
-//                            verticalAlignment = Alignment.CenterVertically,
-//                            modifier = Modifier.padding(bottom = 8.dp, start = 12.dp, end = 12.dp)
-//                        ) {
-//                            Icon(
-//                                painter = painterResource(Res.drawable.ic_forward),
-//                                contentDescription = null,
-//                                modifier = Modifier.size(16.dp),
-//                                tint = gold
-//                            )
-//                            Spacer(modifier.width(8.dp))
-//                            RegularText(text = episode)
-//                        }
-//                    }
+                    EpisodesComponent(uiState = episodesState)
                 }
 
             }
 
+        }
+    }
+}
 
+@Composable
+fun EpisodesComponent(
+    modifier: Modifier = Modifier,
+    uiState: UiState
+) {
+    when (uiState) {
+        is UiState.Content<*> -> {
+            val episodes = uiState.data as List<String>
+            ShowEpisodesList(
+                modifier = modifier,
+                episodes = episodes
+            )
+        }
+
+        is UiState.Default -> {
+            // Do nothing
+        }
+
+        is UiState.Empty -> {
+            ErrorTextComponent(
+                modifier = modifier,
+                text = uiState.message
+            )
+        }
+
+        is UiState.Error -> {
+            ErrorTextComponent(
+                modifier = modifier,
+                text = uiState.message
+            )
+        }
+
+        is UiState.Loading -> {
+            Box(modifier = modifier.fillMaxWidth().padding(top = 40.dp, bottom = 40.dp)) {
+                LoadingIndicator(
+                    modifier = Modifier
+                        .size(65.dp).align(Alignment.Center)
+                )
+            }
+        }
+    }
+
+}
+
+
+@Composable
+fun ShowEpisodesList(
+    modifier: Modifier = Modifier,
+    episodes: List<String>
+) {
+    var displayedEpisodes by remember {
+        mutableStateOf(emptyList<String>())
+    }
+    LaunchedEffect(true) {
+        var index = 1
+        while (index <= episodes.size) {
+            displayedEpisodes = episodes.subList(0, index)
+            index += 1
+            delay(50)
+
+        }
+    }
+    displayedEpisodes.forEach { episode ->
+
+        AnimatedVisibility(
+            visible = true,
+            enter = fadeIn()
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.padding(bottom = 8.dp, start = 12.dp, end = 12.dp)
+            ) {
+                Icon(
+                    painter = painterResource(Res.drawable.ic_forward),
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp),
+                    tint = gold
+                )
+                Spacer(modifier.width(8.dp))
+                RegularText(text = episode, textAlign = TextAlign.Start)
+            }
         }
     }
 }
