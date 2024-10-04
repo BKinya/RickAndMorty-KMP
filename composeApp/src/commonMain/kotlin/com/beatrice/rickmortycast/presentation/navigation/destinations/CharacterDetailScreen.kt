@@ -127,11 +127,9 @@ fun CharacterDetailScreen(
                     verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
                     EpisodesComponent(uiState = episodesState)
-
                 }
 
             }
-
 
         }
     }
@@ -142,26 +140,33 @@ fun EpisodesComponent(
     modifier: Modifier = Modifier,
     uiState: UiState
 ) {
-    when(uiState){
+    when (uiState) {
         is UiState.Content<*> -> {
             val episodes = uiState.data as List<String>
             ShowEpisodesList(
                 modifier = modifier,
-                episodes = episodes)
+                episodes = episodes
+            )
         }
-       is  UiState.Default -> {
-           // Do nothing
-       }
-        is  UiState.Empty -> {
+
+        is UiState.Default -> {
+            // Do nothing
+        }
+
+        is UiState.Empty -> {
             ErrorTextComponent(
                 modifier = modifier,
-                text = uiState.message)
+                text = uiState.message
+            )
         }
+
         is UiState.Error -> {
             ErrorTextComponent(
                 modifier = modifier,
-                text = uiState.message)
+                text = uiState.message
+            )
         }
+
         is UiState.Loading -> {
             Box(modifier = modifier.fillMaxWidth().padding(top = 40.dp, bottom = 40.dp)) {
                 LoadingIndicator(
@@ -175,15 +180,15 @@ fun EpisodesComponent(
 }
 
 
-
-
 @Composable
-fun ShowEpisodesList(modifier: Modifier = Modifier,
-                     episodes: List<String>) {
+fun ShowEpisodesList(
+    modifier: Modifier = Modifier,
+    episodes: List<String>
+) {
     var displayedEpisodes by remember {
-        mutableStateOf(emptyList<String> ())
+        mutableStateOf(emptyList<String>())
     }
-    LaunchedEffect(true){
+    LaunchedEffect(true) {
         var index = 1
         while (index <= episodes.size) {
             displayedEpisodes = episodes.subList(0, index)
@@ -194,8 +199,10 @@ fun ShowEpisodesList(modifier: Modifier = Modifier,
     }
     displayedEpisodes.forEach { episode ->
 
-        AnimatedVisibility(visible =true,
-            enter = fadeIn() ) {
+        AnimatedVisibility(
+            visible = true,
+            enter = fadeIn()
+        ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start,
