@@ -26,6 +26,12 @@ import com.beatrice.rickmortycast.presentation.theme.gold0
 import com.beatrice.rickmortycast.presentation.theme.gold1
 import com.beatrice.rickmortycast.presentation.theme.gold2
 import com.beatrice.rickmortycast.presentation.theme.gold3
+import com.beatrice.rickmortycast.presentation.theme.red0
+import com.beatrice.rickmortycast.presentation.theme.red1
+import com.beatrice.rickmortycast.presentation.theme.red2
+import com.beatrice.rickmortycast.presentation.theme.red3
+import com.beatrice.rickmortycast.presentation.theme.red4
+import com.beatrice.rickmortycast.presentation.theme.red5
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.delay
 
@@ -35,12 +41,12 @@ fun TypeWriterText(
     text: String,
     onFinishTyping: () -> Unit = {},
     content: @Composable (String) -> Unit,
-    ) {
+) {
 
     var displayText by remember { mutableStateOf("") }
     LaunchedEffect(true) {
         var index = 1
-        while (index <= text.length){
+        while (index <= text.length) {
             displayText = text.substring(0, index)
             index += 1
             delay(100)
@@ -48,7 +54,7 @@ fun TypeWriterText(
         }
         onFinishTyping()
     }
-    content( displayText)
+    content(displayText)
 }
 
 @Composable
@@ -97,6 +103,7 @@ fun SmallTitle(
 fun RegularText(
     modifier: Modifier = Modifier,
     text: String,
+    textAlign: TextAlign = TextAlign.Center
 ) {
     val brush = remember {
         Brush.sweepGradient(colors = listOf(gold0, gold1, gold, gold2, gold3))
@@ -109,7 +116,7 @@ fun RegularText(
             fontWeight = FontWeight.Normal,
             brush = brush
         ),
-        textAlign = TextAlign.Center
+        textAlign = textAlign
     )
 }
 
@@ -155,6 +162,29 @@ fun UnderLinedText(
         )
 
     }
+}
 
+@Composable
+fun ErrorTextComponent(
+    modifier: Modifier = Modifier,
+    text: String
+) {
+    val brush = remember {
+        Brush.sweepGradient(
+            colors = listOf(
+                red0, red1, red3
+            )
+        )
+    }
+    Text(
+        text,
+        modifier = modifier,
+        style = TextStyle(
+            fontSize = 27.sp,
+            fontWeight = FontWeight.SemiBold,
+            brush = brush
+        ),
+        textAlign = TextAlign.Center
+    )
 }
 

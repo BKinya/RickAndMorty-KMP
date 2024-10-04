@@ -16,7 +16,6 @@ import androidx.navigation.compose.rememberNavController
 import com.beatrice.rickmortycast.domain.models.Character
 import com.beatrice.rickmortycast.presentation.navigation.destinations.CharacterDetailScreen
 import com.beatrice.rickmortycast.presentation.navigation.destinations.CharactersScreen
-import com.beatrice.rickmortycast.presentation.state.CharacterUIState
 import kotlinx.serialization.json.Json
 
 @Composable
@@ -34,10 +33,12 @@ fun RickMortyNavHost(
         ) {
             CharactersScreen(
                 navigateToDetailScreen = { character ->
+                    /**
+                     * is this a good place to put a blocking call...
+                     * Considering it's sequential will one of them be discarded?
+                     */
                     val route = RickMortyScreen.CharacterDetailScreen.createRoute(character)
-                    navController.navigate(route) {
-
-                    }
+                    navController.navigate(route)
 
                 })
         }
@@ -73,7 +74,8 @@ fun RickMortyNavHost(
                 character = character,
                 onNavigateBack = {
                     navController.popBackStack()
-                }
+                },
+                
             )
         }
 

@@ -14,3 +14,11 @@ val gold3 = Color(0xFFffdc73)
 val red = Color(0xFFB00020)
 val lightYellow = Color(0xFFfff1ae)
 val smokeWhite = Color(0xFFF5F5F5)
+
+// Red
+val red0 = Color(0xFFf69697)
+val red1 = Color(0xFFee6b6e)
+val red2 = Color(0xFFF944449)
+val red3 = Color(0xFFff2c2c)
+val red4 = Color(0xFF01e2c)
+val red5 = Color(0xFFde0a26)

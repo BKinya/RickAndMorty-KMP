@@ -20,13 +20,19 @@ import kotlinx.coroutines.launch
 
 class CharacterViewModel(
     private val repository: CharacterRepository
-): ViewModel() {
-    private val _characters: MutableStateFlow<PagingData<Character>> = MutableStateFlow(PagingData.empty())
-    val characters: StateFlow<PagingData<Character>>  = _characters.onStart {
+) : ViewModel() {
+    private val _characters: MutableStateFlow<PagingData<Character>> =
+        MutableStateFlow(PagingData.empty())
+    val characters: StateFlow<PagingData<Character>> = _characters.onStart {
         sendEvent(CharacterAction.FetchAllCharacters)
-    }.stateIn(viewModelScope,
+    }.stateIn(
+        viewModelScope,
         SharingStarted.WhileSubscribed(5000L),
-        PagingData.empty())
+        PagingData.empty()
+    )
+
+    private val _episodesUiState = MutableStateFlow<UiState> (UiState.Default)
+    val episodesUiState: StateFlow<UiState> = _episodesUiState
 
     private val _isTyping: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val isTyping: StateFlow<Boolean> = _isTyping.asStateFlow()
@@ -34,41 +40,59 @@ class CharacterViewModel(
     val eventStream = MutableSharedFlow<CharacterAction>(extraBufferCapacity = 10)
 
     init {
-       handleCharacterActions()
+        handleCharacterActions()
     }
 
-    fun handleCharacterActions(){
+   private fun handleCharacterActions() {
         viewModelScope.launch {
-            eventStream.collect{ event ->
-                when(event){
+            eventStream.collect { event ->
+                when (event) {
                     is CharacterAction.FetchAllCharacters -> onFetchCharacters()
                     is CharacterAction.FinishTyping -> onFinishTyping()
+                    is CharacterAction.FetchCharacterEpisodes ->onFetchCharacterEpisodes(event.episodeUrls)
                 }
 
             }
         }
     }
 
-    fun sendEvent(action: CharacterAction){
+     fun sendEvent(action: CharacterAction) {
         viewModelScope.launch {
-            delay(500)
             eventStream.emit(action)
         }
+
     }
 
-    fun onFinishTyping(){
+    private fun onFinishTyping() {
         viewModelScope.launch {
+            delay(500)
             _isTyping.value = false
         }
     }
 
 
-    private fun onFetchCharacters(){
+    private fun onFetchCharacters() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getAllCharacters()
                 .cachedIn(this)
-                .collect{ response ->
-                _characters.value = response
+                .collect { response ->
+                    _characters.value = response
+                }
+        }
+    }
+
+    private fun onFetchCharacterEpisodes(episodesUrls: List<String>){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getCharacterEpisodes(episodesUrls)
+                .onStart {
+                    _episodesUiState.value = UiState.Loading
+                }
+                .collect{ episodes ->
+                    if (episodes.isEmpty()){
+                        _episodesUiState.value = UiState.Empty(message = "No episodes found")
+                    }else{
+                        _episodesUiState.value = UiState.Content(data = episodes)
+                    }
             }
         }
     }

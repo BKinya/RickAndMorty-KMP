@@ -1,6 +1,7 @@
 package com.beatrice.rickmortycast.data.remote.client
 
 import com.beatrice.rickmortycast.data.remote.model.CharactersResult
+import com.beatrice.rickmortycast.data.remote.model.Episode
 import com.beatrice.rickmortycast.data.util.toDomain
 import com.beatrice.rickmortycast.domain.models.Character
 import io.github.aakira.napier.Napier
@@ -12,14 +13,8 @@ class ProdApiClient(
     private val httpClient: HttpClient
 ) : ApiClient {
     override fun searchCharacter(query: String): String {
-        /**
-         * httpClient.get() returns a response...
-         *
-         * take that response and make it a search result
-         *
-         * Error handling and other things later
-         */
-        return "Halllo KMP"
+
+        return query
     }
 
     /**
@@ -31,5 +26,10 @@ class ProdApiClient(
         val characters = result.body<CharactersResult>().characterDetails.map { it.toDomain() }
         return characters
 
+    }
+
+    override suspend fun getEpisode(episodeUrl: String): Episode {
+        val episode = httpClient.get(episodeUrl).body<Episode>()
+        return episode
     }
 }

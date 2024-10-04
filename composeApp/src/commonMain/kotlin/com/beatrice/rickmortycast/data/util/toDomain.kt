@@ -11,6 +11,6 @@ fun CharacterDetails.toDomain(): Character = Character(
     origin = this.origin.name,
     location = this.location.name ,
     status = this.status,
-    episodes = emptyList() // TODO: Update later
+    episodes = this.episode
 
 )
