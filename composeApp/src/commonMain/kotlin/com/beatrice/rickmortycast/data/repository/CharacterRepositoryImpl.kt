@@ -9,6 +9,9 @@ import com.beatrice.rickmortycast.domain.models.Character
 import com.beatrice.rickmortycast.domain.repository.CharacterRepository
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -36,17 +39,22 @@ class CharacterRepositoryImpl(
      * Get all episodes where a character is featured
      */
     override  fun getCharacterEpisodes(episodeUrls: List<String>): Flow<List<String>> = flow{
-        val episodes: List<String> = episodeUrls.map { url ->
-            getOneEpisode(url)
+        coroutineScope {
+            val episodes = episodeUrls.map { url ->
+             async { getOneEpisode(url) }
+            }
+            emit(episodes.awaitAll())
         }
-      emit(episodes)
+
     }
 
    private suspend fun getOneEpisode(episodeUrl: String): String {
      return   try {
             val episode = apiClient.getEpisode(episodeUrl)
+         Napier.d("Fetching episode ${episode.name}", tag = "FETCHING_EPISODES")
          episode.name
         } catch (e: CancellationException) {
+            // Not sure this is even correct... smh
             Napier.e("Cancelling coroutines ${e.message}", tag = "FETCHING_EPISODES")
             throw e
         } catch (e: Exception){

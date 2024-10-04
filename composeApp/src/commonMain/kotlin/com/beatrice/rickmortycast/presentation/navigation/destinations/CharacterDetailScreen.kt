@@ -188,7 +188,7 @@ fun ShowEpisodesList(modifier: Modifier = Modifier,
         while (index <= episodes.size) {
             displayedEpisodes = episodes.subList(0, index)
             index += 1
-            delay(500)
+            delay(50)
 
         }
     }
