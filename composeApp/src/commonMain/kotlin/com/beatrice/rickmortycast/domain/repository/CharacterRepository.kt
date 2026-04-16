@@ -1,7 +1,6 @@
 package com.beatrice.rickmortycast.domain.repository
 
 import androidx.paging.PagingData
-import com.beatrice.rickmortycast.data.remote.model.CharactersResult
 import com.beatrice.rickmortycast.domain.models.Character
 import kotlinx.coroutines.flow.Flow
 
@@ -14,5 +13,5 @@ interface CharacterRepository {
     /**
      * Get all episodes where a character is featured
      */
-   fun getCharacterEpisodes(episodeUrls: List<String>): Flow<List<String>>
+   suspend fun getCharacterEpisodes(episodeUrls: List<String>): Result<List<String>>
 }

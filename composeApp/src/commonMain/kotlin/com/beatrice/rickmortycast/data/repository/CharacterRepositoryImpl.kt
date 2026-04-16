@@ -13,7 +13,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 
 private const val PAGE_SIZE = 30
 
@@ -38,30 +37,23 @@ class CharacterRepositoryImpl(
     /**
      * Get all episodes where a character is featured
      */
-    override  fun getCharacterEpisodes(episodeUrls: List<String>): Flow<List<String>> = flow{
-        coroutineScope {
-            val episodes = episodeUrls.map { url ->
-             async { getOneEpisode(url) }
+    override suspend fun getCharacterEpisodes(episodeUrls: List<String>): Result<List<String>> =
+        try {
+            coroutineScope {
+                episodeUrls.map { url ->
+                    async { getOneEpisode(url).name }
+                }.awaitAll().let { episodes ->
+                    Result.success(episodes)
+                }
             }
-            emit(episodes.awaitAll())
+        } catch (e: Exception) {
+            if (e is CancellationException) throw e
+            Napier.d("ERROR -> ${e.message}", tag = "FETCHING_EPISODES")
+            Result.failure(e)
         }
 
-    }
 
-   private suspend fun getOneEpisode(episodeUrl: String): String {
-     return   try {
-            val episode = apiClient.getEpisode(episodeUrl)
-         Napier.d("Fetching episode ${episode.name}", tag = "FETCHING_EPISODES")
-         episode.name
-        } catch (e: CancellationException) {
-            // Not sure this is even correct... smh
-            Napier.e("Cancelling coroutines ${e.message}", tag = "FETCHING_EPISODES")
-            throw e
-        } catch (e: Exception){
-            Napier.e("an error occurred ${e.message}", tag = "FETCHING_EPISODES")
-            ""
-        }
-    }
+    private suspend fun getOneEpisode(episodeUrl: String) = apiClient.getEpisode(episodeUrl)
 }
 
 

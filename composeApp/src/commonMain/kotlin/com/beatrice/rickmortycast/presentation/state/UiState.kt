@@ -6,7 +6,7 @@ sealed interface UiState{
     data object Default: UiState
     data object Loading: UiState
     data class Content<T>(val data: List<T>): UiState
-    @JvmInline value class Error(val message: String): UiState
+    @JvmInline value class Error(val message: String = "Oops! Something went wrong"): UiState
     @JvmInline value  class Empty(val message: String = "Oops! No Data Found"): UiState
 }
 

@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 class CharacterViewModel(
     private val repository: CharacterRepository
 ) : ViewModel() {
+    val eventStream = MutableSharedFlow<CharacterAction>(extraBufferCapacity = 10)
     private val _characters: MutableStateFlow<PagingData<Character>> =
         MutableStateFlow(PagingData.empty())
     val characters: StateFlow<PagingData<Character>> = _characters.onStart {
@@ -31,32 +32,31 @@ class CharacterViewModel(
         PagingData.empty()
     )
 
-    private val _episodesUiState = MutableStateFlow<UiState> (UiState.Default)
-    val episodesUiState: StateFlow<UiState> = _episodesUiState
+    private val _episodesUiState = MutableStateFlow<UiState>(UiState.Default)
+    val episodesUiState: StateFlow<UiState> = _episodesUiState.asStateFlow()
 
     private val _isTyping: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val isTyping: StateFlow<Boolean> = _isTyping.asStateFlow()
 
-    val eventStream = MutableSharedFlow<CharacterAction>(extraBufferCapacity = 10)
 
     init {
         handleCharacterActions()
     }
 
-   private fun handleCharacterActions() {
+    private fun handleCharacterActions() {
         viewModelScope.launch {
             eventStream.collect { event ->
                 when (event) {
                     is CharacterAction.FetchAllCharacters -> onFetchCharacters()
                     is CharacterAction.FinishTyping -> onFinishTyping()
-                    is CharacterAction.FetchCharacterEpisodes ->onFetchCharacterEpisodes(event.episodeUrls)
+                    is CharacterAction.FetchCharacterEpisodes -> onFetchCharacterEpisodes(event.episodeUrls)
                 }
 
             }
         }
     }
 
-     fun sendEvent(action: CharacterAction) {
+    fun sendEvent(action: CharacterAction) {
         viewModelScope.launch {
             eventStream.emit(action)
         }
@@ -81,19 +81,18 @@ class CharacterViewModel(
         }
     }
 
-    private fun onFetchCharacterEpisodes(episodesUrls: List<String>){
+    private fun onFetchCharacterEpisodes(episodesUrls: List<String>) {
+        _episodesUiState.value = UiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             repository.getCharacterEpisodes(episodesUrls)
-                .onStart {
-                    _episodesUiState.value = UiState.Loading
-                }
-                .collect{ episodes ->
-                    if (episodes.isEmpty()){
+                .onFailure { _episodesUiState.value = UiState.Error() }
+                .onSuccess { episodes ->
+                    if (episodes.isEmpty()) {
                         _episodesUiState.value = UiState.Empty(message = "No episodes found")
-                    }else{
+                    } else {
                         _episodesUiState.value = UiState.Content(data = episodes)
                     }
-            }
+                }
         }
     }
 }
